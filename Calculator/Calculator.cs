@@ -285,6 +285,7 @@ namespace Calculator
 
         // Encoding methods for binary format and Hexadecimal format
         // extracted the conversion of the fractional parts from chat gpt
+
         // Hexadecimal Encoding method
         private string  HexaDecimalEncodingMethod(string result)
         {
@@ -296,9 +297,14 @@ namespace Calculator
 
             double fractionalPart = decimalNumber - intValue;
 
-            string fractionalHexadecimal = FractionalToHexadecimal(fractionalPart);
+            string fractionalHexadecimal = "";
 
-            return HexadecimalFormatString + "." + fractionalHexadecimal;
+            if (fractionalPart != 0)
+            {
+                fractionalHexadecimal = FractionalToHexadecimal(fractionalPart);
+            }
+
+            return HexadecimalFormatString + (fractionalPart != 0 ? "." : "" ) + fractionalHexadecimal;
         }
 
         static string FractionalToHexadecimal(double fractionalPart)
@@ -356,6 +362,7 @@ namespace Calculator
             return FractionalBinaryString;
         }
 
+
         private void Button_click(object sender, EventArgs e)
         {
             Button button = (Button)sender;
@@ -384,6 +391,15 @@ namespace Calculator
             storedOperand = 0;
             result = 0;
             storedOperation = "";
+        }
+
+        private void Backspace_Click(object sender, EventArgs e)
+        {
+            if (ResultOutput.Text != "")
+            {
+                int length = ResultOutput.Text.Length;
+                ResultOutput.Text = ResultOutput.Text.Remove(length - 1);
+            }
         }
 
         private void Operator_Click(object sender, EventArgs e)
@@ -456,15 +472,6 @@ namespace Calculator
             }
         }
 
-        private void Backspace_Click(object sender, EventArgs e)
-        {
-            if (ResultOutput.Text != "")
-            {
-                int length = ResultOutput.Text.Length;
-                ResultOutput.Text = ResultOutput.Text.Remove(length - 1);
-            }
-        }
-
         private void ResultOutput_TextChanged(object sender, EventArgs e)
         {
             if (!string.IsNullOrEmpty(ResultOutput.Text) && ResultOutput.Text.Length < 15 && (ResultOutput.Text.Last() != '.'))
@@ -486,7 +493,7 @@ namespace Calculator
                     HexadecimalTextBox.Text = "OUT OF RNG";
                 } else
                 {
-                    HexadecimalTextBox.Text = hexFormat.PadLeft(8, '0');
+                    HexadecimalTextBox.Text = hexFormat;
                 }
 
             } else
