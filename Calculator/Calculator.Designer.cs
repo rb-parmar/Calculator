@@ -66,6 +66,8 @@
             Zero.TabIndex = 0;
             Zero.Text = "0";
             Zero.UseVisualStyleBackColor = true;
+            Zero.Click += Button_click;
+            Zero.KeyDown += Zero_KeyDown;
             // 
             // Decimal
             // 
@@ -78,6 +80,8 @@
             Decimal.TabIndex = 1;
             Decimal.Text = ".";
             Decimal.UseVisualStyleBackColor = true;
+            Decimal.Click += Button_click;
+            Decimal.KeyDown += Decimal_KeyDown;
             // 
             // One
             // 
@@ -90,6 +94,8 @@
             One.TabIndex = 2;
             One.Text = "1";
             One.UseVisualStyleBackColor = true;
+            One.Click += Button_click;
+            One.KeyDown += One_KeyDown;
             // 
             // Two
             // 
@@ -102,6 +108,8 @@
             Two.TabIndex = 3;
             Two.Text = "2";
             Two.UseVisualStyleBackColor = true;
+            Two.Click += Button_click;
+            Two.KeyDown += Two_KeyDown;
             // 
             // Three
             // 
@@ -114,6 +122,8 @@
             Three.TabIndex = 4;
             Three.Text = "3";
             Three.UseVisualStyleBackColor = true;
+            Three.Click += Button_click;
+            Three.KeyDown += Three_KeyDown;
             // 
             // Four
             // 
@@ -125,6 +135,8 @@
             Four.TabIndex = 5;
             Four.Text = "4";
             Four.UseVisualStyleBackColor = true;
+            Four.Click += Button_click;
+            Four.KeyDown += Four_KeyDown;
             // 
             // Five
             // 
@@ -136,6 +148,8 @@
             Five.TabIndex = 6;
             Five.Text = "5";
             Five.UseVisualStyleBackColor = true;
+            Five.Click += Button_click;
+            Five.KeyDown += Five_KeyDown;
             // 
             // Six
             // 
@@ -147,6 +161,8 @@
             Six.TabIndex = 7;
             Six.Text = "6";
             Six.UseVisualStyleBackColor = true;
+            Six.Click += Button_click;
+            Six.KeyDown += Six_KeyDown;
             // 
             // Seven
             // 
@@ -158,6 +174,8 @@
             Seven.TabIndex = 8;
             Seven.Text = "7";
             Seven.UseVisualStyleBackColor = true;
+            Seven.Click += Button_click;
+            Seven.KeyDown += Seven_KeyDown;
             // 
             // Eight
             // 
@@ -169,6 +187,8 @@
             Eight.TabIndex = 9;
             Eight.Text = "8";
             Eight.UseVisualStyleBackColor = true;
+            Eight.Click += Button_click;
+            Eight.KeyDown += Eight_KeyDown;
             // 
             // Nine
             // 
@@ -180,6 +200,8 @@
             Nine.TabIndex = 10;
             Nine.Text = "9";
             Nine.UseVisualStyleBackColor = true;
+            Nine.Click += Button_click;
+            Nine.KeyDown += Nine_KeyDown;
             // 
             // Equal
             // 
@@ -192,6 +214,7 @@
             Equal.TabIndex = 11;
             Equal.Text = "=";
             Equal.UseVisualStyleBackColor = false;
+            Equal.Click += Equal_Click;
             // 
             // Add
             // 
@@ -204,6 +227,7 @@
             Add.TabIndex = 12;
             Add.Text = "+";
             Add.UseVisualStyleBackColor = false;
+            Add.Click += Operator_Click;
             // 
             // Subtract
             // 
@@ -216,6 +240,7 @@
             Subtract.TabIndex = 13;
             Subtract.Text = "-";
             Subtract.UseVisualStyleBackColor = false;
+            Subtract.Click += Operator_Click;
             // 
             // Multiply
             // 
@@ -228,6 +253,7 @@
             Multiply.TabIndex = 14;
             Multiply.Text = "x";
             Multiply.UseVisualStyleBackColor = false;
+            Multiply.Click += Operator_Click;
             // 
             // Divide
             // 
@@ -240,6 +266,7 @@
             Divide.TabIndex = 15;
             Divide.Text = "➗";
             Divide.UseVisualStyleBackColor = false;
+            Divide.Click += Operator_Click;
             // 
             // Backspace
             // 
@@ -252,6 +279,7 @@
             Backspace.TabIndex = 16;
             Backspace.Text = "⬅️";
             Backspace.UseVisualStyleBackColor = true;
+            Backspace.Click += Backspace_Click;
             // 
             // Clear
             // 
@@ -265,30 +293,38 @@
             Clear.TabIndex = 18;
             Clear.Text = "Clear";
             Clear.UseVisualStyleBackColor = false;
+            Clear.Click += Clear_Click;
             // 
             // OperationInput
             // 
             OperationInput.AccessibleDescription = "The text box to show the user input";
             OperationInput.AccessibleName = "Operation Input";
+            OperationInput.Enabled = false;
             OperationInput.Location = new Point(374, 127);
             OperationInput.Name = "OperationInput";
             OperationInput.Size = new Size(232, 23);
             OperationInput.TabIndex = 19;
+            OperationInput.TextAlign = HorizontalAlignment.Right;
             // 
             // ResultOutput
             // 
             ResultOutput.AccessibleDescription = "The textbox to show the result of an operation";
             ResultOutput.AccessibleName = "Result Output";
+            ResultOutput.Enabled = false;
+            ResultOutput.Font = new Font("Segoe UI Semibold", 15.75F, FontStyle.Bold, GraphicsUnit.Point);
             ResultOutput.Location = new Point(375, 156);
             ResultOutput.Multiline = true;
             ResultOutput.Name = "ResultOutput";
             ResultOutput.Size = new Size(231, 40);
             ResultOutput.TabIndex = 20;
+            ResultOutput.TextAlign = HorizontalAlignment.Right;
+            ResultOutput.TextChanged += ResultOutput_TextChanged;
             // 
             // HexadecimalTextBox
             // 
             HexadecimalTextBox.AccessibleDescription = "Textbox to show the hexadecimal format of the most recent entered digit";
             HexadecimalTextBox.AccessibleName = "Hexadecimal Textbox";
+            HexadecimalTextBox.Enabled = false;
             HexadecimalTextBox.Location = new Point(665, 148);
             HexadecimalTextBox.Name = "HexadecimalTextBox";
             HexadecimalTextBox.Size = new Size(171, 23);
@@ -298,6 +334,7 @@
             // 
             BinaryTextBox.AccessibleDescription = "Textbox to show the binary format of the most recent entered digit";
             BinaryTextBox.AccessibleName = "Binary Textbox";
+            BinaryTextBox.Enabled = false;
             BinaryTextBox.Location = new Point(665, 217);
             BinaryTextBox.Name = "BinaryTextBox";
             BinaryTextBox.Size = new Size(171, 23);
@@ -326,6 +363,7 @@
             // textBox5
             // 
             textBox5.BackColor = Color.SteelBlue;
+            textBox5.Enabled = false;
             textBox5.Location = new Point(365, 119);
             textBox5.Multiline = true;
             textBox5.Name = "textBox5";
@@ -362,7 +400,9 @@
             Controls.Add(Decimal);
             Controls.Add(Zero);
             Controls.Add(textBox5);
+            KeyPreview = true;
             Name = "Calculator";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Calculator";
             Load += Calculator_Load;
             ResumeLayout(false);
@@ -388,7 +428,6 @@
         private Button Multiply;
         private Button Divide;
         private Button Backspace;
-        private Button button18;
         private Button Clear;
         private TextBox OperationInput;
         private TextBox ResultOutput;
